@@ -1,12 +1,45 @@
 local Pins = LibStub("HereBeDragons-Pins-2.0");
 
+-- MapID,Name,X,Y,FACTION
+locations = {
+	{"1453","Stormwind City","66.3","62.1","Alliance"},{"1424","Hillsbrad Footlands","49","52","Alliance"},
+	{"1417","Arathi Highlands","45.8","46.2","Alliance"},{"1436","Westfall","56.6","52.6","Alliance"},
+	{"1432","Loch Modan","33.8","50.8","Alliance"},{"1437","Wetlands","9.6","59.6","Alliance"},
+	{"1419","Blasted Lands","65.6","24.4","Alliance"},{"1425","The Hinterlands","10","44.6","Alliance"},
+	{"1433","Redridge Mountains","30.6","59.6","Alliance"},{"1431","Duskwood","77.6","44.4","Alliance"},
+	{"1434","Stranglethorn Vale","27.4","77.6","Alliance"},{"1455","Ironforge","56.6","48","Alliance"},
+	{"1422","Western Plaguelands","43","85.2","Alliance"},{"1428","Burning Steppes","84.4","68.2","Alliance"},
+	{"1427","Searing Gorge","37.8","30.6","Alliance"},{"1423","Eastern Plaguelands","81.6","59.2","Alliance"},
+	{"1413","Barrens","63","37","Alliance"},{"1446","Tanaris","51","29.2","Alliance"},
+	{"1445","Dustwallow Marsh","67.4","51.2","Alliance"},{"1439","Darkshore","36.4","45.6","Alliance"},
+	{"1438","Teldrassil","58.4","94","Alliance"},{"1450","Moonglade","48","67.2","Alliance"},
+	{"1440","Ashenvale","34.4","48","Alliance"},{"1444","Feralas","89.4","45.8","Alliance"},
+	{"1444","Feralas","30.2","43.2","Alliance"},{"1443","Desolace","64.6","10.4","Alliance"},
+	{"1442","Stonetalon Mountains","36.4","7.2","Alliance"},{"1448","Felwood","62.6","24.2","Alliance"},
+	{"1447","Azshara","11.8","77.6","Alliance"},{"1452","Winterspring","62.2","36.6","Alliance"},
+	{"1451","Silithus","50.6","34.4","Alliance"},
+	{"1450","Moonglade","32.2","66.4","Horde"},{"1412","Mulgore","47.4","58.6","Horde"},
+	{"1434","Stranglethorn Vale","26.8","77.0","Horde"},{"1442","Stonetalon Mountains","45.2","59.8","Horde"},
+	{"1454","Orgrimmar City","45.2","63.8","Horde"},{"1413","Northern Barrens","51.4","30.2","Horde"},
+	{"1456","Thunder Bluff","46.8","50.0","Horde"},{"1443","Desolace","21.6","74.0","Horde"},
+	{"1440","Ashenvale","73.2","61.6","Horde"},{"1441","Thousand Needles","45.0","49.2","Horde"},
+	{"1434","Stranglethorn Vale","32.4","29.2","Horde"},{"1417","Arathi Highlands","73.0","32.6","Horde"},
+	{"1448","Felwood","34.4","53.8","Horde"},{"1440","Ashenvale","12.2","33.8","Horde"},
+	{"1428","Burning Steppes","65.6","24.2","Horde"},{"1447","Azshara","22.0","49.6","Horde"},
+	{"1452","Winterspring","60.4","36.2","Horde"},{"1446","Tanaris","51.6","25.6","Horde"},
+	{"1451","Silithus","48.8","36.6","Horde"},{"1444","Feralas","75.4","44.2","Horde"},
+	{"1418","Badlands","4.0","44.8","Horde"},{"1435","Swamp of Sorrows","46.0","54.6","Horde"},
+	{"1425","The Hinterlands","81.6","81.8","Horde"},{"1458","Undercity","63.6","48.6","Horde"},
+	{"1421","Silverpine","45.6","42.6","Horde"},{"1424","Hillsbrad Footlands","60.2","18.6","Horde"},
+	{"1423","Eastern Plaguelands","80.2","57.2","Horde"}
+};
+
 -- Players faction
 local playerFaction = UnitFactionGroup("player")
 
 function OnEnter(self,motion)
 	GameTooltip:SetOwner(self,"ANCHOR_TOP");
-	--GameTooltip:SetText("Flight Master");
-	GameTooltip:AddLine(tostring(self.tooltipText), 1,1,1);
+	GameTooltip:SetText(self.tooltipText);
 	GameTooltip:Show();
 end
 
@@ -35,70 +68,9 @@ function createMapPin(x,y,mapid)
 	Pins:AddMinimapIconMap("Demonly-FP-mini",getFrameIcon(1),mapid,x/100,y/100,true,true);
 end
 
-if playerFaction == "Alliance" then
--- Eastern Kingdoms
-	-- Stormwind City
-	createMapPin(66.3,62.1,1453);
-	-- Hillsbrad Footlands
-	createMapPin(49,52,1424);
-	-- Arathi Highlands
-	createMapPin(45.8,46.2,1417);
-	-- Westfall
-	createMapPin(56.6,52.6,1436);
-	-- Loch Modan
-	createMapPin(33.8,50.8,1432);
-	-- Wetlands
-	createMapPin(9.6,59.6,1437);
-	-- Blasted Lands
-	createMapPin(65.6,24.4,1419);
-	-- The Hinterlands
-	createMapPin(10,44.6,1425);
-	-- Redridge Mountains
-	createMapPin(30.6,59.6,1433);
-	-- Duskwood
-	createMapPin(77.6,44.4,1431);
-	-- Stranglethorn Vale
-	createMapPin(27.4,77.6,1434);
-	-- Ironforge
-	createMapPin(56.6,48.0,1455);
-	-- Western Plaguelands
-	createMapPin(43.0,85.2,1422);
-	-- Burning Steppes
-	createMapPin(84.4,68.2,1428);
-	-- Searing Gorge
-	createMapPin(37.8,30.6,1427);
-	-- Eastern Plaguelands
-	createMapPin(81.6,59.2,1423);
-
-
--- Kalimdor
-	-- Barrens
-	createMapPin(63.0,37.0,1413);
-	-- Tanaris
-	createMapPin(51.0,29.2,1446);
-	-- Dustwallow Marsh
-	createMapPin(67.4,51.2,1445);
-	-- Darkshore
-	createMapPin(36.4,45.6,1439);
-	-- Teldrassil
-	createMapPin(58.4,94,1438);
-	-- Moonglade
-	createMapPin(48,67.2,1450);
-	-- Ashenvale
-	createMapPin(34.4,48,1440);
-	-- Feralas
-	createMapPin(89.4,45.8,1444);
-	createMapPin(30.2,43.2,1444);
-	-- Desolace
-	createMapPin(64.6,10.4,1443);
-	-- Stonetalon Mountains
-	createMapPin(36.4,7.2,1442);
-	-- Felwood
-	createMapPin(62.6,24.2,1448);
-	-- Azshara
-	createMapPin(11.8,77.6,1447);
-	-- Winterspring
-	createMapPin(62.2,36.6,1452);
-	-- Silithus
-	createMapPin(50.6,34.4,1451);
+for location = 1,#locations do
+	if locations[location][5] == playerFaction
+	then
+		createMapPin(tonumber(locations[location][3]),tonumber(locations[location][4]),tonumber(locations[location][1]));
+	end
 end
