@@ -72,5 +72,6 @@ for location = 1,#locations do
 	if locations[location][5] == playerFaction
 	then
 		createMapPin(tonumber(locations[location][3]),tonumber(locations[location][4]),tonumber(locations[location][1]));
+		--print("DEBUG: Added " .. locations[location][2]);
 	end
 end
